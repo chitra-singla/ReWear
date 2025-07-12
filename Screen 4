@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReWear | Community Clothing Exchange</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #08660d;
+      --light-bg: #f5fff7;
+      --gray: #333;
+      --cta-bg: #ffffff;
+      --cta-hover: #ebffee;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--gray);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--green);
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: radial-gradient(circle at top left, #d5f5e3, transparent 60%);
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .cta-buttons button {
+      padding: 12px 24px;
+      background-color: var(--green);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .cta-buttons button:hover {
+      background-color: #044c0b;
+      transform: translateY(-2px);
+    }
+
+    .carousel {
+      margin: 60px auto;
+      max-width: 1000px;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 220px;
+      height: 300px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .testimonials {
+      padding: 60px 20px;
+      background-color: #ffffff;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .testimonial-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .testimonial {
+      max-width: 300px;
+      background-color: #e0f7e4;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ReWear</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Browse</a>
+      <a href="#">Login</a>
+      <a href="#">Sign Up</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Give Clothes a Second Life</h1>
+    <p>Join our community clothing exchange to swap, save and support sustainability. Reuse fashion. Reduce waste.</p>
+    <div class="cta-buttons">
+      <button>Start Swapping</button>
+      <button>Browse Items</button>
+    </div>
+  </section>
+
+  <section class="carousel">
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+    <div class="carousel-item"></div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Swappers Say</h2>
+    <div class="testimonial-boxes">
+      <div class="testimonial">“Loved the platform. Helped me give away clothes that still had life left in them.”</div>
+      <div class="testimonial">“Swapped a jacket I didn’t wear anymore and got a super cute dress!”</div>
+      <div class="testimonial">“Easy to use and good for the planet. Win-win!”</div>
+    </div>
+  </section>
+</body>
+</html>

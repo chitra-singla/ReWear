@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #f5fff7;
+      --text: #1c1c1c;
+      --primary: #08660d;
+      --secondary: #e0f7e4;
+      --input-bg: #ffffff;
+      --input-border: #ccc;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text);
+      background: radial-gradient(circle at 20% 20%, rgba(160, 255, 200, 0.2), transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(160, 255, 200, 0.2), transparent 60%);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 40px;
+      background-color: var(--input-bg);
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #dcdcdc;
+      padding-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .search-input {
+      padding: 10px;
+      width: 260px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--text);
+      border-radius: 8px;
+    }
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      gap: 40px;
+    }
+    .form-group {
+      flex: 1;
+      min-width: 300px;
+      transition: transform 0.3s;
+    }
+    .form-group:hover {
+      transform: scale(1.02);
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="file"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+    }
+    textarea {
+      resize: none;
+      height: 180px;
+    }
+    .preview-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .preview-images img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid var(--primary);
+    }
+    .status-btn {
+      margin-top: 12px;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .status-btn:hover {
+      background-color: #044c0b;
+      transform: translateY(-2px);
+    }
+    .previous-listings {
+      margin-top: 50px;
+    }
+    .previous-listings h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .listing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+    }
+    .listing-box {
+      height: 140px;
+      background: var(--secondary);
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Product Detail Page</h1>
+      <input type="text" class="search-input" placeholder="Search..." />
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label for="imageUpload">Add Images</label>
+        <input type="file" id="imageUpload" multiple accept="image/*" />
+        <div class="preview-images" id="imagePreview"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Add Product Description</label>
+        <textarea id="description" placeholder="Enter full details about the product..."></textarea>
+        <button class="status-btn" onclick="toggleStatus()" id="statusBtn">Available</button>
+      </div>
+    </div>
+
+    <div class="previous-listings">
+      <h2>Previous Listings:</h2>
+      <div class="listing-grid">
+        <div class="listing-box"></div>
+        <div class="listing-box"></div>
+        <div class="listing-box"></div>
+        <div class="listing-box"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const imageInput = document.getElementById('imageUpload');
+    const previewContainer = document.getElementById('imagePreview');
+    const statusBtn = document.getElementById('statusBtn');
+    let status = 'Available';
+
+    imageInput.addEventListener('change', function () {
+      const files = Array.from(this.files);
+      previewContainer.innerHTML = '';
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    function toggleStatus() {
+      status = status === 'Available' ? 'Swap' : 'Available';
+      statusBtn.textContent = status;
+    }
+  </script>
+</body>
+</html>

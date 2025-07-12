@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReWear - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #ffffff;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 380px;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .profile-pic {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 2px solid #d1d5db;
+      cursor: pointer;
+      background-color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-pic img {
+      width: 32px;
+      height: 32px;
+      opacity: 0.7;
+    }
+
+    .profile-pic input {
+      display: none;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      color: #08660d;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      margin-bottom: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+      background-color: #f9fafb;
+      color: #111827;
+    }
+
+    input:focus {
+      border-color: #08660d;
+      background-color: #fff;
+      outline: none;
+    }
+
+    .eye-icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #6b7280;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #08660d;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #065a0a;
+    }
+
+    button:active {
+      background-color: #044707;
+    }
+
+    .signup-text {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 16px;
+      color: #6b7280;
+    }
+
+    .signup-text a {
+      color: #08660d;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .toast {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #dc2626;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease, top 0.3s ease;
+    }
+
+    .toast.show {
+      top: -20px;
+      opacity: 1;
+    }
+
+    @media (max-width: 400px) {
+      .login-container {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="toast" id="toast">Invalid username or password</div>
+
+    <label class="profile-pic" for="fileInput">
+      <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon">
+      <input type="file" id="fileInput" accept="image/*">
+    </label>
+
+    <h2>ReWear</h2>
+
+    <form id="loginForm">
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required>
+        <span class="eye-icon" id="togglePassword">&#128065;</span>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="signup-text">
+      Don't have an account? <a href="#">Sign up</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const toast = document.getElementById('toast');
+    const fileInput = document.getElementById('fileInput');
+    const profileImage = document.getElementById('profileImage');
+    const passwordField = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+
+    fileInput.addEventListener('change', function () {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          profileImage.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    togglePassword.addEventListener('click', function () {
+      const type = passwordField.type === 'password' ? 'text' : 'password';
+      passwordField.type = type;
+      togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = passwordField.value;
+
+      if (username === "admin" && password === "123456") {
+        window.location.href = "dashboard.html";
+      } else {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      }
+    });
+  </script>
+
+</body>
+</html>

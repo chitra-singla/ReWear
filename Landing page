@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+
+  <!-- Calligraphy Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      background-color: #08660d;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar select {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-icon img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Search bar */
+    .search-container {
+      width: 100%;
+      padding: 10px 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 2px solid #08660d;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    /* Product Box */
+    .product-box {
+      width: 90%;
+      max-width: 1100px;
+      height: 220px;
+      margin: 20px auto;
+      background-color: #f9f9f9;
+      border: 2px dashed #08660d;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 18px;
+    }
+
+    /* Category Section */
+    .category-section {
+      width: 90%;
+      max-width: 1100px;
+      margin: 40px auto 20px;
+    }
+
+    .category-section h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      color: #08660d;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .category-box {
+      background-color: #e9fbe9;
+      border: 2px solid #08660d;
+      border-radius: 12px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: #08660d;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .category-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 102, 13, 0.2);
+      cursor: pointer;
+    }
+
+    /* Product Listing Section */
+    .product-section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+
+    .product-section h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      color: #08660d;
+      text-align: center;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      height: 250px;
+      background-color: #f0fdf0;
+      border: 2px solid #08660d;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #08660d;
+      font-weight: bold;
+      font-size: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0, 102, 13, 0.2);
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product-grid, .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <label for="language" style="color: white;">Language:</label>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+      </select>
+    </div>
+    <div class="navbar-right">
+      <div class="user-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" placeholder="Search anything...">
+  </div>
+
+  <!-- Product Banner Box -->
+  <div class="product-box">
+    Banner Image Placeholder
+  </div>
+
+  <!-- Category Section -->
+  <div class="category-section">
+    <h2> Categories </h2>
+    <div class="category-grid">
+      <div class="category-box">Kurta</div>
+      <div class="category-box">Tops</div>
+      <div class="category-box">Jeans</div>
+      <div class="category-box">Dresses</div>
+      <div class="category-box">Ethnic Wear</div>
+      <div class="category-box">Winter Wear</div>
+    </div>
+  </div>
+
+  <!-- Product Listing Section -->
+  <div class="product-section">
+    <h2> Product Listing </h2>
+    <div class="product-grid">
+      <div class="product-card">Product 1</div>
+      <div class="product-card">Product 2</div>
+      <div class="product-card">Product 3</div>
+      <div class="product-card">Product 4</div>
+    </div>
+  </div>
+
+</body>
+</html>

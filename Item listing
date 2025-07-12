@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Listing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #08660d;
+      --light-bg: #f5fff7;
+      --gray: #333;
+      --light: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--gray);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background-color: var(--light);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar input[type="text"] {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+
+    .listing-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: var(--light);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .listing-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .main-image {
+      flex: 1 1 48%;
+      height: 360px;
+      background-image: url('https://images.unsplash.com/photo-1542060748-10c28b62716b');
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      transition: background-image 1s ease-in-out;
+    }
+
+    .item-info {
+      flex: 1 1 48%;
+    }
+
+    .item-info h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: var(--green);
+    }
+
+    .item-info p {
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .thumbs-container {
+      margin-top: 40px;
+    }
+
+    .thumbs-container h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .thumbnail-list {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .thumbnail {
+      flex: 0 0 auto;
+      width: 160px;
+      height: 200px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      scroll-snap-align: start;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <strong>Item Listing</strong>
+    <input type="text" placeholder="Search items...">
+  </div>
+
+  <div class="listing-container">
+    <div class="listing-header">
+      <div class="main-image" id="mainImage"></div>
+      <div class="item-info">
+        <h2>Stylish Denim Jacket</h2>
+        <p>
+          Lightly used denim jacket in excellent condition. Medium size, unisex, perfect for casual wear.
+          Swap ready or redeem with 25 points.
+        </p>
+      </div>
+    </div>
+
+    <div class="thumbs-container">
+      <h3>More Product Images</h3>
+      <div class="thumbnail-list" id="thumbnailList">
+        <div class="thumbnail" style="background-image: url('https://images.unsplash.com/photo-1542060748-10c28b62716b');" data-img="https://images.unsplash.com/photo-1542060748-10c28b62716b"></div>
+        <div class="thumbnail" style="background-image: url('https://images.unsplash.com/photo-1602810311491-6c2cdd51b349');" data-img="https://images.unsplash.com/photo-1602810311491-6c2cdd51b349"></div>
+        <div class="thumbnail" style="background-image: url('https://images.unsplash.com/photo-1556909212-d5c4d3c17f2b');" data-img="https://images.unsplash.com/photo-1556909212-d5c4d3c17f2b"></div>
+        <div class="thumbnail" style="background-image: url('https://images.unsplash.com/photo-1600180758890-6b94519a8ba2');" data-img="https://images.unsplash.com/photo-1600180758890-6b94519a8ba2"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const mainImage = document.getElementById('mainImage');
+    let current = 0;
+
+    const images = Array.from(thumbnails).map(el => el.dataset.img);
+
+    function rotateImage() {
+      current = (current + 1) % images.length;
+      mainImage.style.backgroundImage = `url(${images[current]})`;
+    }
+
+    setInterval(rotateImage, 3000);
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        mainImage.style.backgroundImage = `url(${thumb.dataset.img})`;
+        current = images.indexOf(thumb.dataset.img);
+      });
+    });
+  </script>
+
+  <!-- Reference Image Links -->
+  <!-- https://images.unsplash.com/photo-1542060748-10c28b62716b -->
+  <!-- https://images.unsplash.com/photo-1602810311491-6c2cdd51b349 -->
+  <!-- https://images.unsplash.com/photo-1556909212-d5c4d3c17f2b -->
+  <!-- https://images.unsplash.com/photo-1600180758890-6b94519a8ba2 -->
+
+</body>
+</html>
